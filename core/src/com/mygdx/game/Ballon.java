@@ -17,7 +17,7 @@ public class Ballon extends Actor{
     public Ballon(){
 
         setX((float)(Math.random()*Gdx.graphics.getWidth()-150)+100);
-        setY((float)(Math.random()*300)+5);
+        setY((float)(Math.random()*300)-500);
 
         setBounds(getX(), getY(), sprite.getWidth(), sprite.getHeight());
         setTouchable(Touchable.enabled);

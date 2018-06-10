@@ -75,11 +75,11 @@ public class MyGdxGame extends ApplicationAdapter implements GestureDetector.Ges
 		Actor hitActor = stage.hit(coord.x,coord.y,false);
 
 		if (hitActor != null) {
-			Gdx.app.log("asdf","HIT");
+			Gdx.app.log("asdf","HITYES");
 			hitActor.addAction(Actions.removeActor());
 			score++;
 		}else{
-			Gdx.app.log("asdf","NONO");
+			Gdx.app.log("asdf","NONONO");
 		}
 
 		return false;
