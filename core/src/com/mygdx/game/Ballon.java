@@ -73,7 +73,6 @@ public class Ballon extends Actor{
         if (popped) {
             batch.draw(poppedAnimation.getKeyFrame(timeForPop,false), getX(), getY());
             timeForMove = 0;
-            Gdx.app.log("asdfg", "DONE");
             addAction(Actions.removeActor());
             popped = false;
 
