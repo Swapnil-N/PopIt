@@ -10,6 +10,8 @@ import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.actions.MoveByAction;
 import com.badlogic.gdx.scenes.scene2d.actions.RotateToAction;
 
+import static com.mygdx.game.MyGdxGame.score;
+
 public class Ballon extends Actor{
 
     Sprite sprite = new Sprite(new Texture(Gdx.files.internal("badlogic.jpg")));
@@ -38,8 +40,10 @@ public class Ballon extends Actor{
         moveByAction.setDuration(10f);
         addAction(moveByAction);
 
-        if (getY() >= 1500)
+        if (getY() >= 1500) {
             addAction(Actions.removeActor());
+            score--;
+        }
 
         sprite.setPosition(getX(),getY());
         sprite.setRotation(getRotation());

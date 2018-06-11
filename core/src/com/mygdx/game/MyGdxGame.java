@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -31,13 +32,20 @@ public class MyGdxGame extends ApplicationAdapter implements GestureDetector.Ges
 
 	Stage stage;
 
-	int score;
+	public static int score;
+
+	BitmapFont bitmapFont;
+	SpriteBatch batch;
 
 	@Override
 	public void create () {
 
 		stage = new Stage();
 		Gdx.input.setInputProcessor(stage);
+
+		batch = new SpriteBatch();
+		bitmapFont = new BitmapFont();
+		bitmapFont.getData().setScale(6f,6f);
 
 		Ballon ballon1 = new Ballon();
 
@@ -53,13 +61,17 @@ public class MyGdxGame extends ApplicationAdapter implements GestureDetector.Ges
 
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-		if (stage.getActors().size < 5){
+		if (stage.getActors().size < 2){
 			Ballon tempBall = new Ballon();
 			stage.addActor(tempBall);
 		}
 
 		stage.act(Gdx.graphics.getDeltaTime());
 		stage.draw();
+
+		batch.begin();
+		bitmapFont.draw(batch, "Score: "+score, 10,Gdx.graphics.getHeight()-25);
+		batch.end();
 
 	}
 
@@ -77,7 +89,7 @@ public class MyGdxGame extends ApplicationAdapter implements GestureDetector.Ges
 		if (hitActor != null) {
 			Gdx.app.log("asdf","HITYES");
 			hitActor.addAction(Actions.removeActor());
-			score++;
+			score+=3;
 		}else{
 			Gdx.app.log("asdf","NONONO");
 		}
