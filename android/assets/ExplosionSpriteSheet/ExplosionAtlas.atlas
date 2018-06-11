@@ -1,0 +1,40 @@
+ExplosionAtlas.png
+size: 1024,512
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+explo1
+  rotate: false
+  xy: 2, 0
+  size: 190, 335
+  orig: 190, 335
+  offset: 0, 0
+  index: -1
+explo2
+  rotate: false
+  xy: 194, 0
+  size: 190, 335
+  orig: 190, 335
+  offset: 0, 0
+  index: -1
+explo3
+  rotate: false
+  xy: 386, 0
+  size: 190, 335
+  orig: 190, 335
+  offset: 0, 0
+  index: -1
+explo4
+  rotate: false
+  xy: 578, 0
+  size: 190, 335
+  orig: 190, 335
+  offset: 0, 0
+  index: -1
+explo5
+  rotate: false
+  xy: 770, 0
+  size: 190, 335
+  orig: 190, 335
+  offset: 0, 0
+  index: -1

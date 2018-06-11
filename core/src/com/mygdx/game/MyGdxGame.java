@@ -25,12 +25,17 @@ import com.badlogic.gdx.scenes.scene2d.actions.MoveToAction;
 import com.badlogic.gdx.scenes.scene2d.actions.RotateToAction;
 import com.badlogic.gdx.scenes.scene2d.actions.ScaleToAction;
 
+import javax.xml.soap.Text;
+
 import sun.rmi.runtime.Log;
+
+import static com.mygdx.game.Ballon.popped;
 
 
 public class MyGdxGame extends ApplicationAdapter implements GestureDetector.GestureListener{
 
 	Stage stage;
+	Texture backTexture;
 
 	public static int score;
 
@@ -43,12 +48,13 @@ public class MyGdxGame extends ApplicationAdapter implements GestureDetector.Ges
 		stage = new Stage();
 		Gdx.input.setInputProcessor(stage);
 
+		backTexture = new Texture(Gdx.files.internal("skyback.jpg"));
+
 		batch = new SpriteBatch();
 		bitmapFont = new BitmapFont();
 		bitmapFont.getData().setScale(6f,6f);
 
 		Ballon ballon1 = new Ballon();
-
 		stage.addActor(ballon1);
 
 		GestureDetector gestureDetector = new GestureDetector(this);
@@ -61,17 +67,18 @@ public class MyGdxGame extends ApplicationAdapter implements GestureDetector.Ges
 
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-		if (stage.getActors().size < 2){
+		batch.begin();
+		batch.draw(backTexture, 0,0);
+		bitmapFont.draw(batch, "Score: "+score, 10,Gdx.graphics.getHeight()-25);
+		batch.end();
+
+		if (stage.getActors().size < 5){
 			Ballon tempBall = new Ballon();
 			stage.addActor(tempBall);
 		}
 
 		stage.act(Gdx.graphics.getDeltaTime());
 		stage.draw();
-
-		batch.begin();
-		bitmapFont.draw(batch, "Score: "+score, 10,Gdx.graphics.getHeight()-25);
-		batch.end();
 
 	}
 
@@ -88,13 +95,13 @@ public class MyGdxGame extends ApplicationAdapter implements GestureDetector.Ges
 
 		if (hitActor != null) {
 			Gdx.app.log("asdf","HITYES");
-			hitActor.addAction(Actions.removeActor());
+			popped = true;
 			score+=3;
 		}else{
 			Gdx.app.log("asdf","NONONO");
 		}
 
-		return false;
+		return true;
 	}
 
 	@Override
